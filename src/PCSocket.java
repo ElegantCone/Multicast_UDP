@@ -11,10 +11,12 @@ public class PCSocket {
 
     void run(InetAddress group, int port) throws InterruptedException, IOException {
         this.socket = new MulticastSocket(port);
+        this.socket.setSoTimeout(10000);
         socket.joinGroup(group);
-        SocketAddress locAddr = socket.getLocalSocketAddress();
+        //SocketAddress locAddr = socket.getLocalSocketAddress();
+        String msg = InetAddress.getLocalHost().getHostAddress();
         //String msg = "New connection! It's user num "+ args[2] + " " + String.valueOf(addr) + "\n";
-        String msg = String.valueOf(locAddr);
+        //String msg = String.valueOf(locAddr);
         this.activeSockets = new HashMap<>();
         DatagramPacket ip = new DatagramPacket(msg.getBytes(), msg.length(), group, port);
         int count = 0;
@@ -29,11 +31,12 @@ public class PCSocket {
                         activeSockets.remove(key);
                         isClosed = true;
                     }
+                    else
+                        activeSockets.replace(key, 0);
                 }
                 if (isClosed) {
                     System.out.println("Active users:\n");
                     for (String key : activeSockets.keySet()){
-                        activeSockets.replace(key, 0);
                         System.out.println(key + "\n");
                     }
                 }

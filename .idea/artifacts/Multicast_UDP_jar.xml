@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Multicast_UDP:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Multicast_UDP_jar</output-path>
+    <root id="archive" name="Multicast_UDP.jar">
+      <element id="module-output" name="Multicast_UDP" />
+    </root>
+  </artifact>
+</component>
