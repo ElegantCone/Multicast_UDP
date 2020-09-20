@@ -20,7 +20,6 @@ public class AddressSet {
     }
 
     void check() {
-        int count = 0;
         boolean isClosed = false;
         Iterator<Map.Entry<SocketAddress, Long>> iterator = this.activeSockets.entrySet().iterator();
         while (iterator.hasNext()) {
@@ -29,8 +28,7 @@ public class AddressSet {
                 System.out.println("User " + entry.getKey() + " disconnected\n");
                 iterator.remove();
                 isClosed = true;
-            } /*else
-                activeSockets.replace(entry.getKey(), );*/
+            }
         }
         if (isClosed) {
             System.out.println("Active users:\n");

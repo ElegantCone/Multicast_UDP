@@ -1,6 +1,3 @@
-import java.net.SocketAddress;
-import java.util.HashMap;
-
 public class Checker extends Thread {
 
     AddressSet activeSockets;

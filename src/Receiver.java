@@ -1,8 +1,5 @@
 import java.io.IOException;
 import java.net.*;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 public class Receiver extends Thread {
     MulticastSocket socket;
@@ -17,7 +14,6 @@ public class Receiver extends Thread {
 
         socket = new MulticastSocket(port);
         socket.joinGroup(new InetSocketAddress(group, port), NetworkInterface.getByInetAddress(group));
-        //socket.setSoTimeout(10000);
     }
 
     @Override
