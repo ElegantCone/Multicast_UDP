@@ -7,11 +7,12 @@ public class Main {
         InetAddress group = InetAddress.getByName(args[0]);
         int port = Integer.parseInt(args[1]);
 
-        MulticastSocket socket = new MulticastSocket(port);
-        socket.joinGroup(group);
-        Sender send = new Sender(socket, group, port);
-        Receiver recv = new Receiver(socket);
+        AddressSet activeSockets = new AddressSet();
+        Sender send = new Sender(group, port, activeSockets);
         send.start();
+        Receiver recv = new Receiver(group, port, activeSockets);
         recv.start();
+        Checker check = new Checker(activeSockets);
+        check.start();
     }
 }
